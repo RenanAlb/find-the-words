@@ -7,7 +7,7 @@ let palavrasEscritasArray = [];
 
 const getThemes = async () => {
   try {
-    const response = await fetch('http://localhost:8080/temas', {
+    const response = await fetch('https://find-the-words.onrender.com/temas', {
       method: 'GET',
       credentials: 'include'
     });
