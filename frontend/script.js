@@ -246,7 +246,6 @@ const styleCard = () => {
     speed="1.5"
     color="${localStorage.getItem('temaColor') == 'dark' ? 'white' : 'black'}"
   ></l-grid>
-  <p>Carregando...</p>
   `;
 }
 
