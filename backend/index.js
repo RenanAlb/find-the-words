@@ -4,11 +4,11 @@ const app = express();
 const port = 8080;
 const themes = require('./temas');
 
-app.use(express.json());
 app.use(cors({
-  origin: 'https://find-the-words-frontend.onrender.com/',
+  origin: 'https://find-the-words-frontend.onrender.com',
   credentials: true
 }));
+app.use(express.json());
 
 app.get('/temas', async (req, res) => {
   res.status(200).json({ themes });
