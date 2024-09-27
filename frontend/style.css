@@ -34,6 +34,10 @@ body .header p {
 }
 body .card {
   width: 100%;
+  min-height: 100dvh;
+  justify-content: center;
+  align-items: center;
+  display: flex;
   position: absolute;
   top: 0;
   left: 0;
