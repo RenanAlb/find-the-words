@@ -239,8 +239,19 @@ modo.addEventListener('click', () => {
   console.log(localStorage)
 });
 
+const styleCard = () => {
+  card.innerHTML = `
+  '<l-grid
+    size="60"
+    speed="1.5"
+    color="${localStorage.getItem('temaColor') == 'dark' ? 'white' : 'black'}"
+  ></l-grid>
+  `;
+}
+
 // Iniciar aplicação
 const app = () => {
+  styleCard();
   changeTheme();
   getDados();
   getThemes();
