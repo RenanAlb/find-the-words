@@ -1,0 +1,127 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+body, html {
+  overflow: hidden;
+}
+body {
+  background-color: rgb(24, 24, 24);
+  width: 100%;
+  height: 100dvh;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  position: relative;
+  transition: all 0.2s;
+}
+body .header {
+  padding: 10px;
+  width: calc(100%);
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid rgb(39, 39, 39);
+}
+body .header p {
+  font-size: 1.1em;
+}
+body .card {
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: red;
+}
+body .card p {
+  font-size: 2.5em;
+  position: absolute;
+  transition: all 0.75s;
+  animation: words 3s ease-in-out;
+}
+body .card button {
+  font-size: 1.4em;
+  padding: 10px;
+}
+body .card button:hover {
+  cursor: pointer;
+}
+body input {
+  background-color: rgb(24, 24, 24);
+  position: absolute;
+  left: 50%;
+  bottom: 10px;
+  transform: translate(-50%);
+  width: 600px;
+  padding: 20px;
+  font-size: 1.2em;
+}
+body .palavras-escritas {
+  position: fixed;
+  right: 10px;
+  top: 50px;
+  text-align: end;
+  display: flex;
+  flex-direction: column;
+}
+body .palavras-escritas span {
+  zoom: 70%;
+}
+body .palavras-escritas p {
+  text-align: end;
+}
+body .palavras-escritas .palavra {
+  margin: 10px;
+}
+body .tema {
+  font-size: 1em;
+  position: absolute;
+  left: 10px;
+  top: 50px;
+  padding: 5px;
+}
+body .tema:hover {
+  background-color: rgb(24, 24, 24);
+  cursor: pointer;
+  color: white;
+}
+@keyframes words {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@media screen and (max-width: 500px) {
+  body .header p {
+    font-size: 0.9em;
+  }
+  body .palavras-escritas p {
+    font-size: 0.9em;
+  }
+  body .tema {
+    font-size: 0.9em;
+  }
+}
+@media screen and (max-width: 610px) {
+  body input {
+    width: calc(100% - 20px);
+  }
+}@media screen and (max-width: 350px) {
+  body .header p {
+    font-size: 0.8em;
+  }
+  body .palavras-escritas p {
+    font-size: 0.8em;
+  }
+  body .tema {
+    font-size: 0.8em;
+  }
+}
