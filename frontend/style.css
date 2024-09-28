@@ -38,7 +38,7 @@ body .card {
   justify-content: center;
   align-items: center;
   display: flex;
-  position: absolute;
+  position: relative;
   flex-direction: column;
   top: 50%;
   left: 50%;

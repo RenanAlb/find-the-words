@@ -81,16 +81,12 @@ const getDados = async () => {
 
 // Gerar posição das letras
 const getRandomPosition = () => {
-  const marginX = 50; // Margem para a esquerda e direita
-  const marginY = 50; // Margem para o topo e rodapé
-  const topOffset = 150; // Espaço reservado no topo
-  const bottomOffset = 100; // Espaço reservado na parte inferior
-
-  const x = Math.random() * (window.innerWidth - 2 * marginX) + marginX;
-  const y = Math.random() * (window.innerHeight - topOffset - bottomOffset - 2 * marginY) + topOffset + marginY;
+  const x = Math.random() * window.innerWidth;
+  const y = Math.random() * window.innerHeight;
 
   return { x, y };
 };
+
 
 // Estilo da posição das letras
 const positionWordsOnWindow = () => {
@@ -256,8 +252,8 @@ const styleCard = () => {
     speed="1.5"
     color="${localStorage.getItem('temaColor') == 'dark' ? 'white' : 'black'}"
   ></l-grid>
-  <strong style="${localStorage.getItem('temaColor') == 'dark' ? 'white' : 'black'}">Carregando...</strong>
-  <strong style="${localStorage.getItem('temaColor') == 'dark' ? 'white' : 'black'}">Isso pode levar alguns segundos</strong>
+  <strong style="color: ${localStorage.getItem('temaColor') == 'dark' ? 'white' : 'black'}">Carregando...</strong>
+  <strong style="color: ${localStorage.getItem('temaColor') == 'dark' ? 'white' : 'black'}">Isso pode levar alguns segundos</strong>
   `;
 };
 
