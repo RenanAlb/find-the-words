@@ -33,14 +33,15 @@ body .header p {
   font-size: 1.1em;
 }
 body .card {
-  width: 100%;
-  min-height: 100dvh;
+  width: 90%;
+  min-height: 90dvh;
   justify-content: center;
   align-items: center;
   display: flex;
   position: absolute;
-  top: 0;
-  left: 0;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 body .card p {
   font-size: 2.5em;

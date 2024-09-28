@@ -90,12 +90,10 @@ const getRandomPosition = () => {
 const positionWordsOnWindow = () => {
   const ps = document.querySelectorAll('.card p');
   ps.forEach((p, index) => {
-    setInterval(() => {
-      const { x, y } = getRandomPosition();
-      console.log(x, y)
-      p.style.left = `${x}px`;
-      p.style.top = `${y}px`;
-    }, 1000);
+    const { x, y } = getRandomPosition();
+    console.log(x, y)
+    p.style.left = `${x}px`;
+    p.style.top = `${y}px`;
   });
 };
 
@@ -241,13 +239,13 @@ modo.addEventListener('click', () => {
 
 const styleCard = () => {
   card.innerHTML = `
-  '<l-grid
+  <l-grid
     size="60"
     speed="1.5"
     color="${localStorage.getItem('temaColor') == 'dark' ? 'white' : 'black'}"
   ></l-grid>
   `;
-}
+};
 
 // Iniciar aplicação
 const app = () => {
