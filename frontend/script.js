@@ -182,9 +182,11 @@ const nextStep = (index, palavra, palavrasAll) => {
         if (res.length == 1) {
           message.innerText = `Existe ${res.length} palavra com ${res[0].length} letras e letra inicial ${res[0][0].toUpperCase()}`;
           return;
-        } else {
+        } else if (res.length > 1) {
           message.innerText = `Existem ${res.length} palavras que começam com ${palavra[0].toUpperCase()}`;
           return;
+        } else {
+          message.innerText = 'Palavra não encontrada';
         }
       }
     }
