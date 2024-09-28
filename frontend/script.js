@@ -223,7 +223,7 @@ const verificarInputValue = () => {
       const lenghtInputValue = word.length;
       const getWordString = getWords.slice(verificarString, lenghtInputValue + verificarString);
 
-      if (getWordString) {
+      if (getWordString == word) {
         const ps = document.querySelectorAll('.card p');
 
         ps.forEach((p, index) => {
