@@ -81,11 +81,8 @@ const getDados = async () => {
 
 // Gerar posição das letras
 const getRandomPosition = () => {
-  const margin = 60;
-
-  const x = Math.random() * (window.innerWidth - 2 * margin) + margin;
-  const y = Math.random() * (window.innerHeight - 2 * margin) + margin;
-
+  const x = Math.random() * window.innerWidth;
+  const y = Math.random() * window.innerHeight;
   return { x, y };
 };
 
@@ -95,8 +92,8 @@ const positionWordsOnWindow = () => {
   ps.forEach((p, index) => {
     const { x, y } = getRandomPosition();
     console.log(x, y)
-    p.style.left = `${x}px`;
-    p.style.top = `${y}px`;
+    p.style.left = `${x - 20}px`;
+    p.style.top = `${y - 20}px`;
   });
 };
 
