@@ -216,7 +216,7 @@ const verificarInputValue = () => {
   console.log('INDEX', filterWords);
   const getWords = palavras.length == 0 ? [] : palavras.reduce((a, b) => a + b);
 
-  if (filterWords.length > 0) {
+  if (filterWords.length !== 0) {
     palavrasEscritas.innerHTML = '';
     palavrasEscritasArray.push(word);
     const verificarString = getWords.indexOf(word);
@@ -226,7 +226,7 @@ const verificarInputValue = () => {
       const lenghtInputValue = word.length;
       const getWordString = getWords.slice(verificarString, lenghtInputValue + verificarString);
 
-      if (getWordString == word) {
+      if (getWordString) {
         const ps = document.querySelectorAll('.card p');
 
         ps.forEach((p, index) => {
@@ -270,7 +270,6 @@ const verificarInputValue = () => {
       message.style.bottom = '30px';
     }, 3500);
   }
-
   input.value = '';
 };
 
