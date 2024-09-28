@@ -33,6 +33,7 @@ body .header p {
   font-size: 1.1em;
 }
 body .card {
+  background-color: red;
   width: 90%;
   min-height: 90dvh;
   justify-content: center;
