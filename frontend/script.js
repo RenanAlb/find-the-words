@@ -3,6 +3,8 @@ const input = document.querySelector('#input');
 const header = document.querySelector('.header');
 const palavrasEscritas = document.querySelector('.palavras-escritas');
 const modo = document.querySelector('.tema');
+const randomLetras = document.querySelector('.random');
+const message = document.querySelector('.message');
 let palavrasEscritasArray = [];
 
 const getThemes = async () => {
@@ -46,6 +48,11 @@ const changeTheme = () => {
     modo.style.backgroundColor = 'white';
     modo.style.color = 'black';
     document.querySelectorAll('.card p').forEach((e) => e.style.color = 'white');
+    document.querySelector('.random').style.backgroundColor = 'white';
+    document.querySelector('.random').style.color = '#181818';
+    document.querySelector('.message').style.backgroundColor = '#E9E9E9';
+    document.querySelector('.message').style.color = 'black';
+    document.querySelector('.message').style.border = '1px solid white';
   } else {
     modo.innerText = 'escuro';
     document.body.style.backgroundColor = '#E9E9E9';
@@ -57,6 +64,11 @@ const changeTheme = () => {
     modo.style.backgroundColor = '#181818';
     modo.style.color = 'white';
     document.querySelectorAll('.card p').forEach((e) => e.style.color = 'black');
+    document.querySelector('.random').style.backgroundColor = '#181818';
+    document.querySelector('.random').style.color = 'white';
+    document.querySelector('.message').style.backgroundColor = '#181818';
+    document.querySelector('.message').style.color = 'white';
+    document.querySelector('.message').style.border = '1px solid black';
   }
 }
 
@@ -80,30 +92,25 @@ const getDados = async () => {
 };
 
 // Gerar posição das letras
-const getRandomPosition = () => {
-  const x = Math.random() * window.innerWidth;
-  const y = Math.random() * window.innerHeight;
-
+const getRandomPosition = (card) => {
+  const x = (Math.random() * card.clientWidth);
+  const y = (Math.random() * card.clientHeight);
   return { x, y };
 };
 
 
 // Estilo da posição das letras
 const positionWordsOnWindow = () => {
+  const card = document.querySelector('.card');
   const ps = document.querySelectorAll('.card p');
   ps.forEach((p, index) => {
-    const { x, y } = getRandomPosition();
-    console.log(x, y)
-    p.style.left = `${x}px`;
-    p.style.top = `${y}px`;
+    const { x, y } = getRandomPosition(card);
+    p.style.left = `${card.clientWidth - 60 <= x ? x - 70 : x}px`;
+    p.style.top = `${card.clientWidth - 60 <= y ? y - 70 : y}px`;
   });
 };
 
-const responsiveLayout = () => {
-  positionWordsOnWindow();
-};
-
-window.addEventListener('resize', responsiveLayout);
+window.addEventListener('resize', positionWordsOnWindow);
 
 const renderPalavrasEscritas = () => {
   palavrasEscritas.innerHTML = '<p>Palavras escritas <span class="material-symbols-outlined">arrow_downward</span></p>';
@@ -161,6 +168,40 @@ const createWords = () => {
   changeTheme();
 };
 
+let index = 0;
+
+const nextStep = (index, palavra, palavrasAll) => {
+  const filterPalavrasAll = palavrasAll.slice(index, index + palavra.length);
+
+  for (let i = 0; i < palavras.length; i++) {
+    if (palavras[i][0] == palavra[0] && filterPalavrasAll[0] == palavra[0]) {
+      const filtrar = palavras.filter((e) => e[i] == filterPalavrasAll[i]);
+      const res = filtrar.filter((e) => e[0] == palavra[0]);
+      console.log(res)
+      if (res.length > 0) {
+        if (res.length == 1) {
+          message.innerText = `Existe ${res.length} palavra com ${res[0].length} letras e letra inicial ${res[0][0].toUpperCase()}`;
+          return;
+        } else {
+          message.innerText = `Existem ${res.length} palavras que começam com ${palavra[0].toUpperCase()}`;
+          return;
+        }
+      }
+    }
+  }
+};
+
+const avaliarAproximacaoWord = (palavra, palavrasAll) => {
+  for (let o = 0; o < palavra.length; o++) {
+    for (let i = 0; i < palavrasAll.length; i++) {
+      if (palavra[o] == palavrasAll[i]) {
+        index = i;
+        nextStep(index, palavra, palavrasAll);
+      }
+    }
+  }
+};
+
 // Input
 const verificarInputValue = () => {
   contIndex = 0;
@@ -170,12 +211,11 @@ const verificarInputValue = () => {
 
   const word = input.value.toLowerCase();
   const filterWords = palavras.filter((e) => e == word);
+  const getWords = palavras.length == 0 ? [] : palavras.reduce((a, b) => a + b);
 
   if (filterWords.length > 0) {
     palavrasEscritas.innerHTML = '';
     palavrasEscritasArray.push(word);
-
-    const getWords = palavras.length == 0 ? [] : palavras.reduce((a, b) => a + b);
     const verificarString = getWords.indexOf(word);
 
     if (verificarString !== -1) {
@@ -185,12 +225,16 @@ const verificarInputValue = () => {
 
       if (getWordString) {
         const ps = document.querySelectorAll('.card p');
+
         ps.forEach((p, index) => {
           if (index >= verificarString && index < getWordString.length + verificarString) {
             p.style.color = 'red';
+            message.style.bottom = '70px';
+            message.innerText = 'Palavra encontrada';
 
             setTimeout(() => {
               p.style.display = 'none';
+              message.style.bottom = '30px';
             }, 2000);
           }
         });
@@ -211,11 +255,17 @@ const verificarInputValue = () => {
       p.style.color = 'red';
     });
 
+    // Calcular aproximação da palavra
+    avaliarAproximacaoWord(word, getWords);
+
+    message.style.bottom = '70px';
+
     setTimeout(() => {
       ps.forEach((p, index) => {
         p.style.color = localStorage.getItem('temaColor') === 'dark' ? 'white' : 'black';
       });
-    }, 2000);
+      message.style.bottom = '30px';
+    }, 3500);
   }
 
   input.value = '';
@@ -256,6 +306,9 @@ const styleCard = () => {
   <strong style="color: ${localStorage.getItem('temaColor') == 'dark' ? 'white' : 'black'}">Isso pode levar alguns segundos</strong>
   `;
 };
+
+// Random letras
+randomLetras.addEventListener('click', positionWordsOnWindow);
 
 // Iniciar aplicação
 const app = () => {

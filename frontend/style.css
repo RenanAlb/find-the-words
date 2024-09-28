@@ -34,13 +34,31 @@ body .header p {
 }
 body .card {
   margin: 80px 10px;
-  width: 100%;
-  height: calc(100dvh - 160px);
+  width: calc(100% - 20px);
+  height: calc(100dvh - 190px);
   justify-content: center;
   align-items: center;
   display: flex;
   position: relative;
   flex-direction: column;
+}
+body .random {
+  top: 90px;
+  left: 10px;
+  background-color: black;
+  padding: 5px;
+  position: absolute;
+  color: white;
+  display: flex;
+  align-items: center;
+  font-size: 1em;
+}
+body .random:hover {
+  cursor: pointer;
+}
+body .random span {
+  zoom: 60%;
+  margin-left: 10px;
 }
 body .card p {
   font-size: 2.5em;
@@ -67,6 +85,7 @@ body input {
   width: 600px;
   padding: 20px;
   font-size: 1.2em;
+  outline: none;
 }
 body .palavras-escritas {
   position: fixed;
@@ -75,12 +94,14 @@ body .palavras-escritas {
   text-align: end;
   display: flex;
   flex-direction: column;
+  transition: all 0.4s;
 }
 body .palavras-escritas span {
   zoom: 70%;
 }
 body .palavras-escritas p {
   text-align: end;
+  transition: all 0.4s;
 }
 body .palavras-escritas .palavra {
   margin: 10px;
@@ -96,6 +117,14 @@ body .tema:hover {
   background-color: rgb(24, 24, 24);
   cursor: pointer;
   color: white;
+}
+body .message {
+  padding: 10px;
+  text-align: center;
+  width: 600px;
+  position: absolute;
+  bottom: 30px;
+  transition: all 0.3s;
 }
 @keyframes words {
   0% {
@@ -115,9 +144,18 @@ body .tema:hover {
   body .tema {
     font-size: 0.8em;
   }
+  body .random {
+    font-size: 0.8em;
+  }
+  body .message {
+    font-size: 0.8em;
+  }
 }
 @media screen and (max-width: 610px) {
   body input {
+    width: calc(100% - 20px);
+  }
+  body .message {
     width: calc(100% - 20px);
   }
 }@media screen and (max-width: 350px) {
@@ -128,6 +166,12 @@ body .tema:hover {
     font-size: 0.75em;
   }
   body .tema {
+    font-size: 0.75em;
+  }
+  body .random {
+    font-size: 0.75em;
+  }
+  body .message {
     font-size: 0.75em;
   }
 }
