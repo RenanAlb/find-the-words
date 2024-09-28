@@ -81,7 +81,7 @@ const getDados = async () => {
 
 // Gerar posição das letras
 const getRandomPosition = () => {
-  const margin = 20;
+  const margin = 60;
 
   const x = Math.random() * (window.innerWidth - 2 * margin) + margin;
   const y = Math.random() * (window.innerHeight - 2 * margin) + margin;
