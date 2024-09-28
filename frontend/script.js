@@ -81,8 +81,11 @@ const getDados = async () => {
 
 // Gerar posição das letras
 const getRandomPosition = () => {
-  const x = Math.random() * window.innerWidth;
-  const y = Math.random() * window.innerHeight;
+  const margin = 20;
+
+  const x = Math.random() * (window.innerWidth - 2 * margin) + margin;
+  const y = Math.random() * (window.innerHeight - 2 * margin) + margin;
+
   return { x, y };
 };
 
@@ -96,6 +99,12 @@ const positionWordsOnWindow = () => {
     p.style.top = `${y}px`;
   });
 };
+
+const responsiveLayout = () => {
+  positionWordsOnWindow();
+};
+
+window.addEventListener('resize', responsiveLayout);
 
 const renderPalavrasEscritas = () => {
   palavrasEscritas.innerHTML = '<p>Palavras escritas <span class="material-symbols-outlined">arrow_downward</span></p>';
