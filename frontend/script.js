@@ -213,6 +213,7 @@ const verificarInputValue = () => {
 
   const word = input.value.toLowerCase();
   const filterWords = palavras.filter((e) => e == word);
+  console.log('INDEX', filterWords);
   const getWords = palavras.length == 0 ? [] : palavras.reduce((a, b) => a + b);
 
   if (filterWords.length > 0) {
