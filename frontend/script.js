@@ -179,7 +179,7 @@ const nextStep = (index, palavra, palavrasAll) => {
       const res = filtrar.filter((e) => e[0] == palavra[0]);
       if (res.length > 0) {
         if (res.length == 1) {
-          message.innerText = `Existe ${res.length} palavra com ${res[0].length} letras e letra inicial ${res[0][0].toUpperCase()}`;
+          message.innerText = `Há ${res.length} palavra com ${res[0].length} letras e inicial ${res[0][0].toUpperCase()}`;
           return;
         } else if (res.length > 1) {
           message.innerText = `Existem ${res.length} palavras que começam com ${palavra[0].toUpperCase()}`;
