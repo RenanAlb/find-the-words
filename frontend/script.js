@@ -132,8 +132,9 @@ const createWords = () => {
     const index = Number(localStorage.getItem('tema'));
     if (index == 10 && palavras.length == 0) {
       card.innerHTML = '<button>Parabéns! Recomece!<span class="material-symbols-outlined">arrow_outward</span></button>';
+    } else {
+      card.innerHTML = '<button>Próximo tema <span class="material-symbols-outlined">arrow_outward</span></button>';
     }
-    card.innerHTML = '<button>Próximo tema <span class="material-symbols-outlined">arrow_outward</span></button>';
 
     if (localStorage.getItem('temaColor') === 'dark') {
       document.querySelector('.card button').style.backgroundColor = 'white';
@@ -262,7 +263,7 @@ const verificarInputValue = () => {
       p.style.color = 'red';
     });
 
-    message.innerText = 'Palavra não encontrada'
+    message.innerText = 'Palavra não encontrada';
 
     // Calcular aproximação da palavra
     avaliarAproximacaoWord(word, getWords);
@@ -300,8 +301,6 @@ modo.addEventListener('click', () => {
   }
 
   changeTheme();
-
-  console.log(localStorage)
 });
 
 const styleCard = () => {
