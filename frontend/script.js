@@ -177,7 +177,6 @@ const nextStep = (index, palavra, palavrasAll) => {
     if (palavras[i][0] == palavra[0] && filterPalavrasAll[0] == palavra[0]) {
       const filtrar = palavras.filter((e) => e[i] == filterPalavrasAll[i]);
       const res = filtrar.filter((e) => e[0] == palavra[0]);
-      console.log(res)
       if (res.length > 0) {
         if (res.length == 1) {
           message.innerText = `Existe ${res.length} palavra com ${res[0].length} letras e letra inicial ${res[0][0].toUpperCase()}`;
@@ -187,6 +186,7 @@ const nextStep = (index, palavra, palavrasAll) => {
           return;
         } else {
           message.innerText = 'Palavra não encontrada';
+          return;
         }
       }
     }
@@ -212,8 +212,7 @@ const verificarInputValue = () => {
   }
 
   const word = input.value.toLowerCase();
-  const filterWords = palavras.filter((e) => e == word);
-  console.log('INDEX', filterWords);
+  const filterWords = palavras.filter((e) => e.toLowerCase() === word);
   const getWords = palavras.length == 0 ? [] : palavras.reduce((a, b) => a + b);
 
   if (filterWords.length !== 0) {
@@ -225,6 +224,8 @@ const verificarInputValue = () => {
       console.log('ok', verificarString)
       const lenghtInputValue = word.length;
       const getWordString = getWords.slice(verificarString, lenghtInputValue + verificarString);
+
+      console.log('getWordString', getWordString);
 
       if (getWordString) {
         const ps = document.querySelectorAll('.card p');
@@ -241,6 +242,8 @@ const verificarInputValue = () => {
             }, 2000);
           }
         });
+      } else {
+        return;
       }
     } else {
       console.error('error');
@@ -252,11 +255,14 @@ const verificarInputValue = () => {
       createWords();
     }, 2000);
   } else {
+    console.log('Aqui')
     const ps = document.querySelectorAll('.card p');
 
     ps.forEach((p, index) => {
       p.style.color = 'red';
     });
+
+    message.innerText = 'Palavra não encontrada'
 
     // Calcular aproximação da palavra
     avaliarAproximacaoWord(word, getWords);
@@ -264,12 +270,13 @@ const verificarInputValue = () => {
     message.style.bottom = '70px';
 
     setTimeout(() => {
-      ps.forEach((p, index) => {
+      ps.forEach((p) => {
         p.style.color = localStorage.getItem('temaColor') === 'dark' ? 'white' : 'black';
       });
       message.style.bottom = '30px';
     }, 3500);
   }
+
   input.value = '';
 };
 
@@ -298,6 +305,7 @@ modo.addEventListener('click', () => {
 });
 
 const styleCard = () => {
+  changeTheme();
   card.innerHTML = `
   <l-grid
     size="60"
