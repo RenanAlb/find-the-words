@@ -85,6 +85,8 @@ const getDados = async () => {
       createWords();
     } else {
       console.error('Tema inválido ou não encontrado.');
+      localStorage.setItem('tema', 0);
+      getThemes();
     }
   } catch (error) {
     console.error('Erro ao obter dados:', error);
