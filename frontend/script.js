@@ -53,6 +53,16 @@ const changeTheme = () => {
     document.querySelector('.message').style.backgroundColor = '#E9E9E9';
     document.querySelector('.message').style.color = 'black';
     document.querySelector('.message').style.border = '1px solid white';
+
+    if (document.querySelector('.card l-grid')) {
+      styleCard();
+    }
+
+    if (document.querySelector('.card button')) {
+      document.querySelector('.card button').style.backgroundColor = 'white';
+      document.querySelector('.card button').style.color = 'black';
+      document.querySelector('.card button').style.border = '1px solid white';
+    }
   } else {
     modo.innerText = 'escuro';
     document.body.style.backgroundColor = '#E9E9E9';
@@ -69,6 +79,16 @@ const changeTheme = () => {
     document.querySelector('.message').style.backgroundColor = '#181818';
     document.querySelector('.message').style.color = 'white';
     document.querySelector('.message').style.border = '1px solid black';
+
+    if (document.querySelector('.card l-grid')) {
+      styleCard();
+    }
+
+    if (document.querySelector('.card button')) {
+      document.querySelector('.card button').style.backgroundColor = '#181818';
+      document.querySelector('.card button').style.color = 'white';
+      document.querySelector('.card button').style.border = '1px solid black';
+    }
   }
 }
 
@@ -152,10 +172,12 @@ const createWords = () => {
     button.addEventListener('click', () => {
       if (index >= 0 && index < 10) {
         localStorage.setItem('tema', index + 1);
-        palavrasEscritasArray = []
+        palavrasEscritasArray = [];
+        styleCard();
         getDados();
       } else {
         localStorage.setItem('tema', 0);
+        getDados();
       }
     });
   } else {
@@ -306,7 +328,6 @@ modo.addEventListener('click', () => {
 });
 
 const styleCard = () => {
-  changeTheme();
   card.innerHTML = `
   <l-grid
     size="60"
