@@ -236,7 +236,7 @@ const verificarInputValue = () => {
     return;
   }
 
-  const word = input.value.toLowerCase();
+  const word = input.value.trim().toLowerCase();
   const filterWords = palavras.filter((e) => e.toLowerCase() === word);
   const getWords = palavras.length == 0 ? [] : palavras.reduce((a, b) => a + b);
 
